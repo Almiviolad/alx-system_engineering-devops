@@ -1,0 +1,2 @@
+#!/bin/bash
+evho "Hello, world \n"

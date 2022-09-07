@@ -1,2 +1,2 @@
 #!/bin/bash
-evho "Hello, world \n"
+echo "Hello, world \n"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#This script diaplays Best School 10 time
+i=1
+until [ $i -gt 10 ]
+do
+	echo "Best School"
+	i=$((i +1))
+done	

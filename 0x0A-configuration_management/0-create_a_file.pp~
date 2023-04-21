@@ -1,0 +1,2 @@
+# creates a fike with below title and attr
+file{'/tmp/school'

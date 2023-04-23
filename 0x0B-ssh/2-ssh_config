@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# sets configuration so as not to use password
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no

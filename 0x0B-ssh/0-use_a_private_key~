@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#connects to server with private key
+ssh -i ubuntu@100.25.223.60

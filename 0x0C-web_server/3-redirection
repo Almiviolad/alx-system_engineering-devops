@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # installs and configure nginx to redirect to anoher page
 apt-get install  -y nginx
-systemtcl start nginx
+sudo service nginx start
 echo "Hello World!" | sudo tee /var/www/html/index.html
-str_replace="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
-sed -i "s/server_name _; / $str_replace/" /etc/nginx/sites-enabled/default
+str_replace="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+sed -i "s/server_name _;/$str_replace/" /etc/nginx/sites-enabled/default
+sudo service nginx start

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# installs and configure brand new ubuntu server
+
+# updates the server
+sudo apt-get update
+
+# install nginx default yes to all prompt
+sudo apt-get install -y nginx
+
+# make firewall allow nginx
+sudo ufw allow 'Nginx HTTP'
+
+# makes dir /var/www/html if not exist
+sudo mkdir -p /var/www/html
+
+# change permissions for the path
+sudo chmod -R 755 /var/www
+
+# prints default meaaage to index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# handles redirection
+str_replace="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/server_name _;/$str_replace/" /etc/nginx/sites-enabled/default
+
+#handles error page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/e404_page.html
+string_rep="listen 80 default_server;\n\terror_page 404 \/e404_page.html;\n\tlocation = \/e404_page.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_rep/" /etc/nginx/sites-enabled/default
+
+# handles custom headers
+str_rep="listen 80 default_server;\n\tadd_header X-Served-By \$hostname;"
+sudo sed -i "s/listen 80 default_server;/$str_rep/" /etc/nginx/sites-enabled/default
+sudo service nginx restart

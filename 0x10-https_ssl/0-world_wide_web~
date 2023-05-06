@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Bash script that will display informat41;320;0cion about subdomains
+find_info () {
+dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2 { split($1, a, ".");print "The subdomain "a[1] " is a " $(NF-1) " record and points to "$NF}'
+}
+if [ $# == 2 ]; then
+    find_info $2 $3
+    
+fi
+
+if [ $# == 1 ]; then
+	find_info $1 www
+	find_info $1 lb-01
+	find_info $1 web-01
+	find_info $1 web-02
+fi

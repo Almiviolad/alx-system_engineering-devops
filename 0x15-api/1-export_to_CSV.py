@@ -6,9 +6,8 @@ import sys
 
 if __name__ == "__main__":
     id = sys.argv[1]
-    todo_url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(
-        id)
     user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(id)
+    todo_url = user_url + '/todos'
 
     todo = requests.get(todo_url)
     todo_json = todo.json()
@@ -16,7 +15,7 @@ if __name__ == "__main__":
     user_json = user_info.json()
 
     username = user_json.get('name')
-    filename = 'USER_ID.csv'
+    filename = "{}.csv".format(id)
     with open(filename, 'w', newline='') as csvfile:
         for task in todo_json:
             status = task['completed']

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""script that fetches data from api"""
+"""gets employees data from api using requests"""
 
 import requests
 import sys

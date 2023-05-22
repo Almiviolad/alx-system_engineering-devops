@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """gets employees data from api using requests"""
-
 import requests
 import sys
 

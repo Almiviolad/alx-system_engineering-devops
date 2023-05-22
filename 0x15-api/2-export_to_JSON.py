@@ -17,7 +17,7 @@ if __name__ == "__main__":
     user_json = user_info.json()
 
     username = user_json.get('name')
-    filename = 'USER_ID.json'
+    filename = '{}.json'.format(id)
     json_list = []
     for task in todo_json:
         status = task['completed']

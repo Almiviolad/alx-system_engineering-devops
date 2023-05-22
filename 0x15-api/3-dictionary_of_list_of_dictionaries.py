@@ -20,7 +20,7 @@ if __name__ == "__main__":
         todo_json = todo.json()
         user_info = requests.get(user_url)
         user_json = user_info.json()
-        username = user_json.get('name')
+        username = user_json.get('username')
         filename = 'todo_all_employees.json'
         json_list = []
         for task in todo_json:

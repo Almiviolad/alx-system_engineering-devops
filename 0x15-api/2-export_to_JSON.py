@@ -16,7 +16,7 @@ if __name__ == "__main__":
     user_info = requests.get(user_url)
     user_json = user_info.json()
 
-    username = user_json.get('name')
+    username = user_json.get('username')
     filename = '{}.json'.format(id)
     json_list = []
     for task in todo_json:

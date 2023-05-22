@@ -14,8 +14,9 @@ if __name__ == "__main__":
     for user in user_json:
         id = user['id']
         user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(id)
-        todo_url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(id)
-        todo = requests.get(todo_url)
+        todo = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(
+            id)
+        todo = requests.get(todo)
         todo_json = todo.json()
         user_info = requests.get(user_url)
         user_json = user_info.json()
@@ -33,4 +34,3 @@ if __name__ == "__main__":
 
             with open(filename, 'w') as jsonfile:
                 json.dump(dictionary, jsonfile)
-    

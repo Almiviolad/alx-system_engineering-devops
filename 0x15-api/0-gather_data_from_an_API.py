@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """gets employees data from api using requests"""
+
 import requests
 import sys
 
@@ -17,7 +18,7 @@ if __name__ == '__main__':
     completed_tasks = [task for task in todo_json if task['completed']]
     complete = len(completed_tasks)
     total_tasks = len(todo_json)
-    username = user_json.get('name')
+    username = user_json.get('username')
 
     print(
         f"Employee {username} is done with tasks({complete}/{total_tasks}):")

@@ -14,8 +14,7 @@ if __name__ == "__main__":
     for user in user_json:
         id = user['id']
         user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(id)
-        todo = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(
-            id)
+        todo = user_url + '/' + 'todos'
         todo = requests.get(todo)
         todo_json = todo.json()
         user_info = requests.get(user_url)

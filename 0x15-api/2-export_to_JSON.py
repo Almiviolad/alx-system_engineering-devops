@@ -7,9 +7,8 @@ import sys
 
 if __name__ == "__main__":
     id = sys.argv[1]
-    todo_url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(
-        id)
     user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(id)
+    todo_url = user_url + '/' + 'todos'
 
     todo = requests.get(todo_url)
     todo_json = todo.json()

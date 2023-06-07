@@ -9,8 +9,10 @@ from requests import get
 
 def top_ten(subreddit):
     """
-    Function that takes in a subreddit and prints the title offirst ten
+    function that queries the Reddit API and prints the titles of the first
+    10 hot posts listed for a given subreddit
     """
+    
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
     headers = {'User-Agent': 'android:alx_func:v1.0 (by /u/almiviolad)'}
     response = get(url, headers=headers)

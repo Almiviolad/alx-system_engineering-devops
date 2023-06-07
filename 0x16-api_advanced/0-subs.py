@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-number of subscribers 
+number of subscribers
 """
 
 from requests import get

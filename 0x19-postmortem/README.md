@@ -1,0 +1,59 @@
+##Internhelp General outage Incident Report
+
+This is the post Mortem reports for the outage of the ethan help up on the 12th of August 2023 by 1:30 p.m WAT to 5:00 p.m. WAT. We apologize for any inconvenience that the outage might have caused to our users and we also thank some of our users for the kind words of support during the outage and we promise that  even if it does happen in future it won't be as severe as this.
+
+##Issue summary
+From 1:30 p.m. to 5:00, requests made by the website to our servers resulted in a http 500 error, because of this none of the service on our website was possible. Other apis that make use of our apis were also affected by this error. The issue affected all the traffic on the app. 100% of the users got the 500 error page smiling at them when they try to access the app, except they weren't smiling back. We understand that this must have been very frustrating for our users. 
+The root cause of the outage was an overloaded server. Our server experienced an unusual surge in traffic (probably due to a new referral reward program). The cpu and memory utilization of our server peaked and caused increased response time and made the app inaccessible.
+
+##Timeline
+* 1:00 WAT Traffic to the server started to increase exponentially
+*  1:30 WAT server shut down
+* 1:31 WAT outage began
+
+* 1:32 WAT Datadog monitor alerted the team
+* 1:35 WAT Restarting the server failed to resolve the error
+* 2:30 WAT added more servers and load balancer (
+* 4:00 WAT setup successful
+* 4:30 WAT app started working normally and response time was fast.
+* 5:00 WAT 100% of traffic were back online
+
+##Root cause
+At 1:00pm WAT traffic to our server peaked beyond what our server could handle. The traffic was unusual, so there was no auto scalaing on demand mechanism on ground to handle to situation. This lead to exhaustion of our server resources, the CPU and memory utilisation peaked which lead to late response time. The server finally automatically shut down around 1:30 pm WAT. All request returned 500 http error immediately. 
+
+##Resolution
+1:35pm WAT Restarting the server failed to solve the issue, because the server still couldn't handle the incoming traffic.
+
+By 2:00pm WAT to resolve the issue we scaled horizontally (by adding more servers to handle users request) and added a load balancer to distribute loads to these servers after the issue was escalated the issue.
+
+Certainly, here's an example of corrective and preventative measures for addressing server overload. Please note that this is a general example, and you should tailor these measures to your specific environment and technologies:
+
+##Corrective Measures:
+Improvements/Fixes:
+1. Optimize Database Queries: Identify and optimize slow or inefficient database queries that contribute to high resource consumption.
+2. Caching Strategy: Implement an efficient caching strategy to reduce the load on the database and backend services.
+4. Load Balancing: Introduce load balancing to distribute incoming traffic across multiple servers.
+5. Resource Scaling: Increase server resources (CPU, memory) to handle current and future traffic loads.
+
+##Tasks:
+1. Implement database indexing on frequently queried columns.
+2. Configure a content delivery network (CDN) to offload static assets.
+3. Profile application code to identify and optimize performance*critical sections.
+4. Set up automatic scaling policies based on CPU and memory thresholds.
+5. Implement load balancers (e.g., AWS Elastic Load Balancing) and distribute traffic evenly.
+
+##Preventative Measures:
+#Improvements/Fixes:
+1. Automated Scaling: Implement auto*scaling based on traffic patterns to handle future load spikes.
+2. Database Optimization: Regularly review and optimize database schema, indexes, and queries.
+3. Throttling Mechanism: Implement request throttling to prevent abuse and limit resource consumption.
+4. Monitoring Enhancements: Set up proactive alerts for critical resource thresholds, such as CPU and memory usage.
+5. Disaster Recovery Plan: Develop a comprehensive plan to quickly recover from overload incidents.
+
+#Tasks:
+1. Create AWS Auto Scaling policies to automatically add/remove instances based on demand.
+2. Schedule regular database maintenance to and optimize query performance.
+3. Implement API rate limiting to restrict the number of requests per user.
+4. Configure alerts for CPU utilization above 80% and memory usage above 90%.
+5. Establish a disaster recovery playbook with step*by*step instructions for incident response.
+

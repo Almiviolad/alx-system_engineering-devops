@@ -1,8 +1,11 @@
 server {
+        # listen to requets on port 80
         listen 80 default_server;
 	listen [::]:80 default_server;
 	server_name 35.175.128.194;
 	add_header  X-Served-By 129964-web-01;
+
+	# proxy request revived to server listening on 5002
 	location = /airbnb-onepage/ {
 	proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
 	}

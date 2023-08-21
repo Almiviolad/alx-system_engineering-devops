@@ -28,12 +28,12 @@ server {
 
     # serve content from web_dynamic/2-hbnb.py
     location / {
-    	proxy_pass http://127.0.0.1:5003/2-hbnb/;
+    	proxy_pass http://127.0.0.1:5003/2-hbnb;
 	}
     # serve static content 
-    location /static {
-    	alias ~/AirBnB_clone_v4/web_dynamic/static/;
-	}
+    location /static/ {
+    	alias /home/ubuntu/AirBnB_clone_v3/web_dynamic/static/;
+    	}
     # 404 error page
     error_page 404 /404.html;
     location /404 {
